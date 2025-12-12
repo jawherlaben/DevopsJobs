@@ -1,0 +1,9 @@
+<div>
+    <app-search-bar (searchEvent)="performSearch($event)"></app-search-bar>
+    <app-company-list [companies]="paginatedCompanies"></app-company-list>
+    <br>
+    <app-pagination [totalCompanies]="totalCompanies"
+                    [companiesPerPage]="companiesPerPage"
+                    (pageChanged)="onPageChange($event)">
+    </app-pagination>
+</div>

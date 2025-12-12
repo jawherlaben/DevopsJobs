@@ -1,0 +1,243 @@
+<div class="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg bg-gray-200/50">
+  <div class="rounded-t mb-0 px-6 py-6">
+    <div class="text-center flex justify-between">
+      <h6 class="text-xl font-bold">Mon Compte</h6>
+    </div>
+  </div>
+  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+    <form #settingsForm="ngForm" (ngSubmit)="updateUserInfos(settingsForm)">
+      <h6 class="text-sm mt-3 mb-6 font-bold uppercase">
+        Mes Informations
+      </h6>
+      <div class="flex flex-wrap">
+        
+
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-xs font-bold mb-2"
+              htmlFor="grid-password"
+
+            >
+            Prénom
+            </label>
+            <input
+              class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              type="text" id="lastname" [class.border-red-500]="!firstname.valid && firstname.touched" #firstname="ngModel" [(ngModel)]="userUpdateDTO.firstname" required name="firstname" minlength="3"
+            />
+            <div *ngIf="!firstname.valid && firstname.touched" class="text-red-500"> Veuillez saisir un prénom valide. </div>
+
+          </div>
+        </div>
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+            Nom de famille              
+            </label>
+            <input
+              class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              type="text" id="lastname" [class.border-red-500]="!lastname.valid && lastname.touched" #lastname="ngModel" [(ngModel)]="userUpdateDTO.lastname" required name="lastname" minlength="3"
+            />
+            <div *ngIf="!lastname.valid && lastname.touched" class="text-red-500"> Veuillez saisir un nom valide. </div>
+
+          </div>
+        </div>
+
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+              Date of birth
+            </label>
+            <input
+            type="date"
+            class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+            [(ngModel)]="userUpdateDTO.dateBirth"
+            name="dateBirth"
+            (ngModelChange)="userUpdateDTO.dateBirth = $event"
+            required
+          />
+          </div>
+        </div>
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+              Gender
+            </label>
+            <select
+              class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              name="gender"
+            >
+            <option [value]="'Male'" [selected]="userUpdateDTO.gender === 'Male'">Male</option>
+            <option [value]="'Female'" [selected]="userUpdateDTO.gender === 'Female'">Female</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+      <hr class="mt-6 border-b-1" />
+
+      <h6 class="text-sm mt-3 mb-6 font-bold uppercase">
+        Contact Information
+      </h6>
+      <div class="flex flex-wrap">
+        <div class="w-full lg:w-12/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+            Adresse
+            </label>
+            <input
+              class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              type="text" id="address" [class.border-red-500]="!address.valid && address.touched" #address="ngModel" [(ngModel)]="userUpdateDTO.address" required name="address" minlength="3" maxlength="32"
+            />
+            <div *ngIf="!address.valid && address.touched" class="text-red-500"> Veuillez saisir une adresse valide. </div>
+
+          </div>
+        </div>
+        <div class="w-full lg:w-4/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+            Numéro de téléphone
+            </label>
+            <input
+              class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              type="number" id="phoneNumber" [class.border-red-500]="!phoneNumber.valid && phoneNumber.touched" #phoneNumber="ngModel" [(ngModel)]="userUpdateDTO.phoneNumber" required name="phoneNumber" minlength="8" maxlength="16"
+            />
+            <div *ngIf="!phoneNumber.valid && phoneNumber.touched" class="text-red-500"> Veuillez saisir un numéro de téléphone valide. </div>
+          </div>
+        </div>
+        <div class="w-full lg:w-4/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+            Email
+          </label>
+          <input
+            class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+            type="email" id="email"  [class.border-red-500]="!email.valid && email.touched" #email="ngModel" [(ngModel)]="userUpdateDTO.email" required name="email"
+          />
+
+          <span *ngIf="!email.valid && email.touched" class="text-red-500"> Veuillez saisir un adresse mail valide. </span>
+
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="mt-6 border-b-1" />
+
+
+      <div class="flex flex-wrap">
+        <div class="w-full lg:w-12/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+              About me
+            </label>
+            <textarea
+              class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              rows="4"
+              type="text" id="Aboutme" [class.border-red-500]="!Aboutme.valid && Aboutme.touched" #Aboutme="ngModel" [(ngModel)]="userUpdateDTO.description"  name="Aboutme" maxlength="250"
+            >    
+            <span *ngIf="!email.valid && email.touched" class="text-red-500"> Veuillez saisir une description valide. </span>
+
+                </textarea
+            >
+          </div>
+        </div>
+      </div>
+ 
+
+
+
+
+  <div class="my-4 p-4 border border-gray-200 rounded-lg">
+    <h2 class="text-xl font-bold mb-4">Education</h2>
+
+    <div *ngFor="let edu of userUpdateDTO?.education; let i = index" class="mb-4">
+      <input  [disabled]="!isEducationInputEnabled" [(ngModel)]="edu.title" name="eduTitle{{i}}" placeholder="Titre du Diplôme" class="border border-gray-300 p-2 rounded w-full mb-2" />
+      <input [disabled]="!isEducationInputEnabled" type="date" [(ngModel)]="edu.period.startDate" name="eduStartDate{{i}}" class="border border-gray-300 p-2 rounded w-full mb-2" required />
+      <input [disabled]="!isEducationInputEnabled" type="date" [(ngModel)]="edu.period.endDate" name="eduEndDate{{i}}" class="border border-gray-300 p-2 rounded w-full mb-2" required />
+      <textarea [disabled]="!isEducationInputEnabled" [(ngModel)]="edu.description" name="eduDescription{{i}}" class="border border-gray-300 p-2 rounded w-full mb-2" rows="3"></textarea>
+      <button *ngIf="isEducationInputEnabled" type="button" (click)="removeEducation(i)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
+    </div>
+    <div class="flex space-x-2 mt-4">
+      <button *ngIf="isEducationInputEnabled" type="button" (click)="addEducation()" 
+      [disabled]="!isEducationValid()" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Ajouter Education</button>
+      <button *ngIf="isEducationInputEnabled" type="button" (click)="validateEducation()" 
+      [disabled]="!isEducationValid()" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Valider Education</button>
+      <button *ngIf="!isEducationInputEnabled" type="button" (click)="editEducation()" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Modifier</button>
+    </div>
+  </div>
+
+  <div class="my-4 p-4 border border-gray-200 rounded-lg">
+    <h2 class="text-xl font-bold mb-4">Experience</h2>
+  
+    <div *ngFor="let exp of userUpdateDTO?.experience; let i = index" class="mb-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
+        <input [disabled]="!isExperienceInputEnabled" [(ngModel)]="exp.title" name="expTitle{{i}}" placeholder="Intitulé du Poste" class="border border-gray-300 p-2 rounded w-full mb-2" required/>
+        <div class="flex space-x-2">
+          <input [disabled]="!isExperienceInputEnabled" type="date" [(ngModel)]="exp.period.startDate" name="expStartDate{{i}}" class="border border-gray-300 p-2 rounded w-full mb-2" required/>
+          <input [disabled]="!isExperienceInputEnabled" type="date" [(ngModel)]="exp.period.endDate" name="expEndDate{{i}}" class="border border-gray-300 p-2 rounded w-full mb-2" required />
+        </div>
+      </div>
+      <textarea [disabled]="!isExperienceInputEnabled" [(ngModel)]="exp.description" name="expDescription{{i}}" class="border border-gray-300 p-2 rounded w-full mb-2" rows="3" required></textarea>
+      <button *ngIf="isExperienceInputEnabled" (click)="removeExperience(i)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
+    </div>
+  
+    <div class="flex space-x-2 mt-4">
+      <button [disabled]="!isExperienceValid()" *ngIf="isExperienceInputEnabled" (click)="addExperience()" type="button"  class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Ajouter Experience</button>
+      <button [disabled]="!isExperienceValid()" *ngIf="isExperienceInputEnabled"  (click)="validateExperience()" type="button"  class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Valider Experience</button>
+      <button *ngIf="!isExperienceInputEnabled" (click)="editExperience()" type="button"  class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Modifier</button>
+    </div>
+  </div>
+
+
+      <div class="my-4 p-4 border border-gray-200 rounded-lg">
+        <h2 class="text-xl font-bold mb-4">Compétences</h2>
+        <div *ngIf="userUpdateDTO.skills as skills" class="space-y-2">
+          <div *ngFor="let skill of skills; let i = index" class="flex items-center justify-between">
+            <p class="mr-2">{{ skill }}</p>
+            <button type="button" (click)="removeSkill(i)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Supprimer</button>
+          </div>
+        </div>
+        <div *ngIf="!isSkillInputEnabled" class="mt-4 flex">
+          <input #newSkill type="text" class="border border-gray-300 px-3 py-1 rounded-l" />
+          <button type="button" (click)="addSkill(newSkill.value); newSkill.value=''" class="bg-blue-500 text-white px-3 py-1 rounded-r hover:bg-blue-600">Valider</button>
+        </div>
+        <button type="button" *ngIf="isSkillInputEnabled" (click)="isSkillInputEnabled = false" class="mt-4 bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Ajouter Compétence</button>
+      </div>
+      
+      <button
+      class="bg-blue-500 text-white hover:bg-blue-700 rounded-md font-medium py-2 px-4 transition ease-out hover:ease-in disabled:opacity-50 disabled:cursor-not-allowed"
+      type="button"
+      [disabled]="!settingsForm.valid || isEducationInputEnabled || isExperienceInputEnabled || !isSkillInputEnabled "
+      type="submit"
+    >
+      Enregistrer 
+    </button>
+    <div class="self-end px-5" [class]="editMessageClass" >{{ editMessage }}</div>
+
+
+    </form>
+  </div>
+</div>

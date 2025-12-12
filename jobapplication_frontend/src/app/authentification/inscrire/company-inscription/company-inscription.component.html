@@ -1,0 +1,140 @@
+<form #companyForm="ngForm" (ngSubmit)="onSubmit()">
+  <div
+    class="flex flex-col gap-2 [&>input]:px-5 [&>input]:py-2 [&>input]:border [&>input]:rounded-md [&>select]:border [&>select]:px-5 [&>select]:py-2 [&>select]:rounded-md"
+  >
+    <div class="flex gap-2 [&>div]:w-full">
+      <div
+        class="[&>input]:px-5 [&>input]:py-2 [&>input]:rounded-md [&>input]:w-full [&>input]:border"
+      >
+        <label for="name">Nom de l'entreprise</label>
+        <input
+          type="text"
+          id="name"
+          required
+          [class.border-red-500]="!name.valid && name.touched"
+          #name="ngModel"
+          [(ngModel)]="model.name"
+          ngModel
+          name="name"
+        />
+        <div *ngIf="!name.valid && name.touched" class="text-red-500">
+          Veuillez saisir un nom valide.
+        </div>
+      </div>
+
+      <div
+        class="[&>input]:px-5 [&>input]:py-2 [&>input]:rounded-md [&>input]:w-full [&>input]:border [&>textarea]:px-5 [&>textarea]:py-2 [&>textarea]:rounded-md [&>textarea]:w-full [&>textarea]:border [&>textarea]:resize-none"
+      >
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          required
+          [class.border-red-500]="!description.valid && description.touched"
+          #description="ngModel"
+          [(ngModel)]="model.description"
+          ngModel
+          name="description"
+        ></textarea>
+        <div
+          *ngIf="!description.valid && description.touched"
+          class="text-red-500"
+        >
+          Veuillez saisir une description valide.
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-2 [&>div]:w-full">
+      <div
+        class="[&>input]:px-5 [&>input]:py-2 [&>input]:rounded-md [&>input]:w-full [&>input]:border"
+      >
+        <label for="state">État</label>
+        <input
+          type="text"
+          id="state"
+          required
+          [class.border-red-500]="!state.valid && state.touched"
+          #state="ngModel"
+          [(ngModel)]="model.state"
+          ngModel
+          name="state"
+        />
+        <div *ngIf="!state.valid && state.touched" class="text-red-500">
+          Veuillez saisir un état valide.
+        </div>
+      </div>
+
+      <div
+        class="[&>input]:px-5 [&>input]:py-2 [&>input]:rounded-md [&>input]:w-full [&>input]:border"
+      >
+        <label for="country">Pays</label>
+        <input
+          type="text"
+          id="country"
+          required
+          [class.border-red-500]="!country.valid && country.touched"
+          #country="ngModel"
+          [(ngModel)]="model.country"
+          ngModel
+          name="country"
+        />
+        <div *ngIf="!country.valid && country.touched" class="text-red-500">
+          Veuillez saisir un pays valide.
+        </div>
+      </div>
+    </div>
+
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      required
+      [class.border-red-500]="!email.valid && email.touched"
+      #email="ngModel"
+      [(ngModel)]="model.email"
+      ngModel
+      name="email"
+    />
+    <div *ngIf="!email.valid && email.touched" class="text-red-500">
+      Veuillez saisir un email valide.
+    </div>
+
+    <label for="password">Mot de passe</label>
+    <input
+      type="password"
+      id="password"
+      required
+      [class.border-red-500]="!password.valid && password.touched"
+      #password="ngModel"
+      [(ngModel)]="model.password"
+      ngModel
+      name="password"
+    />
+    <div *ngIf="!password.valid && password.touched" class="text-red-500">
+      Veuillez saisir un mot de passe valide.
+    </div>
+
+    <label for="website">Site Web</label>
+    <input
+      type="text"
+      id="website"
+      [(ngModel)]="model.website"
+      ngModel
+      name="website"
+    />
+
+    <div class="flex justify-between items-center">
+      <a class="text-blue-500 cursor-pointer" (click)="onClick()"
+        >Déjà membre?</a
+      >
+      <button
+        class="bg-blue-500 text-white hover:bg-blue-700 rounded-md font-medium py-2 px-4 transition ease-out hover:ease-in disabled:opacity-50 disabled:cursor-not-allowed"
+        [disabled]="!companyForm.valid"
+        type="submit"
+      >
+        S'inscrire
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,108 @@
+<div class="container mx-auto px-4 py-6 bg-gray-200/50">
+  <div class="shadow-lg rounded-lg p-6">
+    <h1 class="text-2xl font-semibold text-center mb-6">
+      Publier une Offre d'Emploi
+    </h1>
+
+    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div class="mb-4">
+        <label for="title" class="block text-sm font-medium text-gray-600"
+          >Titre de l'Emploi</label
+        >
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          class="mt-1 p-2 w-full border rounded-md"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="description" class="block text-sm font-medium text-gray-600"
+          >Description de l'Emploi</label
+        >
+        <textarea
+          id="description"
+          formControlName="description"
+          class="mt-1 p-2 w-full border rounded-md resize-none"
+        ></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="body" class="block text-sm font-medium text-gray-600"
+          >Détails de l'Emploi</label
+        >
+        <textarea
+          id="body"
+          formControlName="body"
+          class="mt-1 p-2 w-full border rounded-md resize-none"
+        ></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="tags" class="block mb-2 text-sm font-medium text-gray-700">
+          Tags
+        </label>
+        <ng-select
+          id="tags"
+          name="tags"
+          [items]="skillsEnum"
+          bindLabel="name"
+          [multiple]="true"
+          formControlName="tags"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white"
+          [ngClass]="{
+            'custom-dropdown-panel': true,
+            'custom-dropdown-option': true
+          }"
+        >
+        </ng-select>
+      </div>
+
+      <div class="mb-4">
+        <label for="pay" class="block text-sm font-medium text-gray-600"
+          >Salaire</label
+        >
+        <ng-select
+          id="pay"
+          name="pay"
+          [items]="remunerationOptions"
+          [multiple]="false"
+          formControlName="pay"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white"
+          [ngClass]="{
+            'custom-dropdown-panel': true,
+            'custom-dropdown-option': true
+          }"
+        >
+        </ng-select>
+      </div>
+
+
+      <div class="flex flex-col space-y-2">
+        <label for="type" class="text-sm font-medium text-gray-700">
+          Type de Poste
+        </label>
+        <ng-select
+          id="type"
+          name="type"
+          [items]="jobTypesEnum"
+          bindLabel="name"
+          [multiple]="false"
+          formControlName="type"
+          class="block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-200"
+          [ngClass]="{
+            'custom-dropdown-panel': true,
+            'custom-dropdown-option': true
+          }"
+        >
+        </ng-select>
+      </div>
+
+      <div class="flex justify-center mt-6">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg transition duration-200">
+          Soumettre l'Offre
+        </button>
+      </div>
+    </form>
+</div>

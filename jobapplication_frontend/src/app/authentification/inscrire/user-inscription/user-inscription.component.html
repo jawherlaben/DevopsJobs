@@ -1,0 +1,148 @@
+<form #userInscriptionForm="ngForm" (ngSubmit)="onSubmit()">
+  <div
+    class="flex flex-col gap-2 w-full [&>input]:px-5 [&>input]:py-2 [&>input]:border [&>input]:rounded-md [&>select]:border [&>select]:px-5 [&>select]:py-2 [&>select]:rounded-md"
+  >
+    <div class="flex gap-2 [&>div]:w-full">
+      <div
+        class="[&>input]:px-5 [&>input]:py-2 [&>input]:rounded-md [&>input]:w-full [&>input]:border"
+      >
+        <label for="firstname">Prénom</label>
+        <input
+          type="text"
+          id="firstname"
+          [class.border-red-500]="!firstname.valid && firstname.touched"
+          #firstname="ngModel"
+          [(ngModel)]="model.firstname"
+          required
+          name="firstname"
+        />
+        <div *ngIf="!firstname.valid && firstname.touched" class="text-red-500">
+          Veuillez saisir un prénom valide.
+        </div>
+      </div>
+
+      <div
+        class="[&>input]:px-5 [&>input]:py-2 [&>input]:rounded-md [&>input]:w-full [&>input]:border"
+      >
+        <label for="lastname">Nom de famille</label>
+        <input
+          type="text"
+          id="lastname"
+          [class.border-red-500]="!lastname.valid && lastname.touched"
+          #lastname="ngModel"
+          [(ngModel)]="model.lastname"
+          required
+          name="lastname"
+          minlength="3"
+        />
+        <div *ngIf="!lastname.valid && lastname.touched" class="text-red-500">
+          Veuillez saisir un nom valide.
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-2 [&>div]:w-full">
+      <div
+        class="[&>input]:px-5 [&>input]:py-2 [&>input]:rounded-md [&>input]:w-full [&>input]:border"
+      >
+        <label for="address">Adresse</label>
+        <input
+          type="text"
+          id="address"
+          [class.border-red-500]="!address.valid && address.touched"
+          #address="ngModel"
+          [(ngModel)]="model.address"
+          required
+          name="address"
+          minlength="3"
+          maxlength="32"
+        />
+        <div *ngIf="!address.valid && address.touched" class="text-red-500">
+          Veuillez saisir une adresse valide.
+        </div>
+      </div>
+
+      <div
+        class="[&>input]:px-5 [&>input]:py-2 [&>input]:rounded-md [&>input]:w-full [&>input]:border"
+      >
+        <label for="phoneNumber">Numéro de téléphone</label>
+        <input
+          type="number"
+          id="phoneNumber"
+          [class.border-red-500]="!phoneNumber.valid && phoneNumber.touched"
+          #phoneNumber="ngModel"
+          [(ngModel)]="model.phoneNumber"
+          required
+          name="phoneNumber"
+          minlength="8"
+          maxlength="8"
+        />
+        <div
+          *ngIf="!phoneNumber.valid && phoneNumber.touched"
+          class="text-red-500"
+        >
+          Veuillez saisir un numéro de téléphone valide.
+        </div>
+      </div>
+    </div>
+
+    <label for="gender">Genre</label>
+    <select
+      id="gender"
+      [class.border-red-500]="!gender.valid && gender.touched"
+      #gender="ngModel"
+      [(ngModel)]="model.gender"
+      required
+      name="gender"
+    >
+      <option value="male">Homme</option>
+      <option value="female">Femme</option>
+      <option value="other">Autre</option>
+    </select>
+    <span *ngIf="!gender.valid && gender.touched" class="text-red-500">
+      Veuillez saisir un genre valide.
+    </span>
+
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      [class.border-red-500]="!email.valid && email.touched"
+      #email="ngModel"
+      [(ngModel)]="model.email"
+      required
+      name="email"
+    />
+    <span *ngIf="!email.valid && email.touched" class="text-red-500">
+      Veuillez saisir un adresse mail valide.
+    </span>
+
+    <label for="password">Mot de passe</label>
+    <input
+      type="password"
+      id="password"
+      [class.border-red-500]="!password.valid && password.touched"
+      #password="ngModel"
+      [(ngModel)]="model.password"
+      required
+      name="password"
+    />
+    <span *ngIf="!password.valid && password.touched" class="text-red-500">
+      Veuillez saisir un mot de passe valide.
+    </span>
+
+    <div class="flex justify-between items-center">
+      <a class="text-blue-500 cursor-pointer" (click)="onClick()"
+        >Déjà membre?</a
+      >
+      <button
+        class="bg-blue-500 text-white hover:bg-blue-700 rounded-md font-medium py-2 px-4 transition ease-out hover:ease-in disabled:opacity-50 disabled:cursor-not-allowed"
+        [disabled]="!userInscriptionForm.valid"
+        type="submit"
+      >
+        S'inscrire
+      </button>
+    </div>
+  </div>
+</form>

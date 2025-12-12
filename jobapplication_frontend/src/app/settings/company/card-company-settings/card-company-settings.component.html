@@ -1,0 +1,86 @@
+<div class="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg bg-gray-200/50">
+    <div class="rounded-t mb-0 px-6 py-6">
+      <div class="text-center flex justify-between">
+        <h6 class="text-xl font-bold">Mon Compte</h6>
+      </div>
+    </div>
+    
+    <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+      <form #settingsForm="ngForm" (ngSubmit)="updateCompanyInfos(settingsForm)">
+
+        <h6 class="text-sm mt-3 mb-6 font-bold uppercase">
+          Mes Informations
+        </h6>
+        <div class="flex gap-1 px-4 my-2">
+            <div class="relative w-full mb-3">
+              <label class="block uppercase text-xs font-bold mb-2">Nom</label>
+              <input class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                type="text" id="name" [class.border-red-500]="!name.valid && name.touched" #name="ngModel" [(ngModel)]="companyUpdateDTO.name" required name="name" minlength="3"
+              />
+              <div *ngIf="!name.valid && name.touched" class="text-red-500"> Veuillez saisir un nom valide. </div>
+          </div>
+          <div class="w-full">
+            <label class="block uppercase text-xs font-bold mb-2">website</label>
+            <input class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              type="website" id="website"  [class.border-red-500]="!website.valid && website.touched" #website="ngModel" [(ngModel)]="companyUpdateDTO.website" required name="website"
+            />
+            <span *ngIf="!website.valid && website.touched" class="text-red-500"> Veuillez saisir un website valide. </span>
+          </div>
+        </div>
+
+
+        <div class="w-full">
+          <label class="block uppercase text-xs font-bold mb-2">email</label>
+          <input class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+            type="email" id="email"  [class.border-red-500]="!email.valid && email.touched" #email="ngModel" [(ngModel)]="companyUpdateDTO.email" required name="email"
+          />
+          <span *ngIf="!website.valid && website.touched" class="text-red-500"> Veuillez saisir un email valide. </span>
+        </div>
+
+  
+        <hr class="mt-6 border-b-1" />
+
+        <h6 class="text-sm mt-3 mb-6 font-bold uppercase">
+          Contact Information
+        </h6>
+        <div class="flex gap-1 px-4 my-2">
+          <div class="w-full">
+            <label class="block uppercase text-xs font-bold mb-2">Adresse</label>
+            <input class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              type="text" id="address" [class.border-red-500]="!address.valid && address.touched" #address="ngModel" [(ngModel)]="companyUpdateDTO.country" required name="address" minlength="3" maxlength="32"
+            />
+            <div *ngIf="!address.valid && address.touched" class="text-red-500"> Veuillez saisir une adresse valide. </div>
+          </div>
+          <div class="w-full">
+            <label class="block uppercase text-xs font-bold mb-2">Etat</label>
+            <input class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              type="text" id="state" [class.border-red-500]="!state.valid && state.touched" #state="ngModel" [(ngModel)]="companyUpdateDTO.state" required name="state" minlength="3" maxlength="32"
+            />
+            <div *ngIf="!state.valid && state.touched" class="text-red-500"> Veuillez saisir un état valide. </div>
+          </div>
+        </div>
+        
+
+        <div class="flex px-4">
+            <div class="relative w-full mb-3">
+              <label class="block uppercase text-xs font-bold mb-2">About</label>
+              <textarea class="border-0 px-3 py-3 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                rows="4"
+                type="text" id="about" [class.border-red-500]="!about.valid && about.touched" #about="ngModel" [(ngModel)]="companyUpdateDTO.description"  name="Aboutme" maxlength="250"
+              >    
+              <span *ngIf="!email.valid && email.touched" class="text-red-500"> Veuillez saisir une description valide. </span>
+              </textarea>
+            </div>
+        </div>
+        
+        <button
+        class="bg-blue-500 text-white hover:bg-blue-700 rounded-md font-medium py-2 px-4 transition ease-out hover:ease-in disabled:opacity-50 disabled:cursor-not-allowed"
+        type="button"
+        [disabled]="!settingsForm.valid "
+        type="submit">
+        Enregistrer 
+      </button>
+      <div class="self-end px-5" [class]="editMessageClass" >{{ editMessage }}</div>
+      </form>
+    </div>
+  </div>

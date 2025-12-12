@@ -1,0 +1,17 @@
+<section class="pb-28 px-8 mt-16 flex gap-10">
+  <app-user-head-profile [user]="user"></app-user-head-profile>
+
+  <div class="grid xl:grid-cols-2 md:grid-cols-1 gap-8 mx-auto items-start [&>div]:p-5 [&>div]:rounded-md [&>div]:border [&>div]:shadow-xl [&>div]:h-full [&>div]:bg-gray-100/75">
+    <div>
+      <app-user-education-card [education]="user?.education" ></app-user-education-card>
+    </div>
+
+    <div>
+      <app-user-experience-card [experience]="user?.experience"></app-user-experience-card>
+    </div>
+
+    <div>
+      <app-user-skills-card [skills]="user?.skills"></app-user-skills-card>
+    </div>
+  </div>
+</section>

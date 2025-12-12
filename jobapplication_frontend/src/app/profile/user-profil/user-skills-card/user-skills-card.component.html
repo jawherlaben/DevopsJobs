@@ -1,0 +1,20 @@
+<div class="flex justify-between mb-5">
+  <div>
+    <h1 class="mb-1 text-2xl font-semibold">Skills</h1>
+    <p class="text-gray-500 leading-relaxed">Check out my technical and soft skills.</p>
+  </div>
+  <button (click)="userService.navigateToSettingsSection('skills')" class="flex items-center">
+    <img src="assets/icons/heroicons/outline/edit-infos.svg" alt="Edit Infos" class="w-5 h-5 mr-2">
+  </button>
+</div>
+
+<div class="grid grid-cols-1 gap-16 gap-y-12 text-center">
+  <div *ngFor="let skill of skills">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h1 class="font-semibold text-lg">{{ skill }}</h1>
+    </div>
+  </div>
+  <div *ngIf="!skills?.length">
+    <p class="text-gray-500 mt-8 text-center">No skills to display.</p>
+  </div>
+</div>

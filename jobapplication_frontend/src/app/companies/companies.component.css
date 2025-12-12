@@ -1,0 +1,18 @@
+/* companies.component.css */
+.company-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates a 3-column grid */
+    grid-gap: 20px; /* Space between items */
+    padding: 20px;
+  }
+  
+  .company-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  

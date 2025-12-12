@@ -1,0 +1,22 @@
+<div class="flex justify-between mb-5">
+  <div>
+    <h1 class="mb-1 text-2xl font-semibold">Experience</h1>
+    <p class="text-gray-500 leading-relaxed">See my experience </p>
+  </div>
+  <button (click)="userService.navigateToSettingsSection('experience')" class="flex items-center">
+    <img src="assets/icons/heroicons/outline/edit-infos.svg" alt="Edit Infos" class="w-5 h-5 mr-2">
+  </button>
+</div>
+
+<div class="mx-auto grid grid-cols-1 gap-16 gap-y-12">
+  <div *ngFor="let experience of experience">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="font-semibold text-lg">{{ experience.title }}</h2>
+      <p class="text-gray-600">{{ experience.period.startDate | date:'shortDate' }} - {{ experience.period.endDate | date:'shortDate' }}</p>
+      <p class="mt-2 text-gray-700">{{ experience.description }}</p>
+    </div>
+  </div>
+  <div *ngIf="!experience?.length">
+    <p class="text-gray-500 mt-8 text-center">No experience to display.</p>
+  </div>
+</div>

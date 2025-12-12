@@ -1,0 +1,10 @@
+<div>
+    <div class="flex items-center">
+      <img [src]="company?.avatar | imagePipe" class="w-12 h-12 rounded-full object-cover mr-4">
+      <div>
+        <h1 class="text-lg font-semibold">{{ company?.name }}</h1>
+        <h4 class="text-sm font-semibold text-gray-400">{{ company?.website }}</h4>
+      </div>
+    </div>
+</div>
+  

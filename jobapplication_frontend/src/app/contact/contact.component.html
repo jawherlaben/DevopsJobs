@@ -1,0 +1,28 @@
+<div class="m-5 p-8">
+    <app-card flexStyle="flex-row">
+        <div class="bg-white w-full h-full p-5 rounded-md">
+            <h2 class="text-xl font-semibold leading-loose mb-2">Nos Coordonnées</h2>
+            <p><span class="font-semibold">Adresse :</span> Tunisie </p>
+            <p><span class="font-semibold">Téléphone :</span> (+216) 00 000 000</p>
+            <p><span class="font-semibold">Email :</span> contact&#64;gmail.com</p>
+        </div>
+
+        <div class="w-full">
+            <h2 class="text-xl font-semibold leading-loose mb-2">Contact</h2>
+            <form class="flex flex-col gap-4 [&>*]:p-3 [&>*]:rounded-md">
+                <input type="text" placeholder="Prénom" required>
+                <input type="text" placeholder="Nom" required>
+                <input type="email" placeholder="Saisissez un Email" required>
+                <input type="email" placeholder="Confirmez l'Email" required>
+                <select required>
+                    <option selected disabled value="">À quel service s'adresse votre demande?</option>
+                    <option value="commercial">Service 1</option>
+                    <option value="support">Service 2</option>
+                    <option value="qualite">Service 3</option>
+                </select>
+                <textarea placeholder="Votre message" required maxlength="600"></textarea>
+                <app-button class="self-end">Envoyer</app-button>
+            </form>
+        </div>
+    </app-card>
+</div>

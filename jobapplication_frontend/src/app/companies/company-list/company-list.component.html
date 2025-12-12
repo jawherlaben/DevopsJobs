@@ -1,0 +1,14 @@
+<div class="company-wrapper">
+  <div *ngFor="let company of companies">
+    <div class="company-card">
+      <img [src]="company.avatar | imagePipe" alt="Logo" class="company-logo">
+      <div class="company-info" >
+        <h3>{{ company.name }}</h3>
+        <p>{{ company.country }}</p>
+        <p>{{ company.description }}</p>
+        <span class="company-state">{{ company.state }}</span>
+        <button (click)="followCompany(company)" class="follow-button">Website</button>
+      </div>
+    </div>
+  </div>
+</div>

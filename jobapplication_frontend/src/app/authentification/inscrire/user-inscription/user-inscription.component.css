@@ -1,0 +1,48 @@
+/* Assurez-vous que ces styles sont inclus dans le fichier CSS de chaque composant ou dans le fichier styles.css global */
+
+.form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-control {
+    background-color: #555; 
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    height: 45px;
+    padding: 0 10px;
+    width: 100%; 
+  }
+  
+  /* Si vous avez besoin de styles spécifiques pour le bouton de la navbar de l'InscrireComponent */
+  .navbar-inscription .btn {
+    margin-right: 10px;
+  }
+  
+  /* Pour la barre de navigation du formulaire d'inscription */
+  .nav-inscription {
+    border-bottom: 2px solid #dee2e6;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .nav-inscription .btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 10px;
+    position: relative;
+  }
+  
+  .nav-inscription .btn.active {
+    font-weight: bold;
+    border-bottom: 3px solid #007bff;
+  }
+  
+  .nav-inscription .btn:focus {
+    outline: none;
+  }
+  

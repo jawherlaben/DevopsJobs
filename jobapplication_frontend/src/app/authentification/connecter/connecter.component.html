@@ -1,0 +1,9 @@
+<h1 class="text-xl font-medium text-center">Bienvenue dans Profilïx</h1>
+
+<div *ngIf="connectType === 'user'">
+  <app-user-connect></app-user-connect>
+</div>
+
+<div *ngIf="connectType === 'company'">
+  <app-company-connect></app-company-connect>
+</div>

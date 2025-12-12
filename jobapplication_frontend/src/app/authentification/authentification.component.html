@@ -1,0 +1,22 @@
+<div class="mx-5">
+  <app-card>
+    <h1 *ngIf="authType == 'inscrire'" class="text-xl font-medium text-center mb-2">Inscription</h1>
+    <h1 *ngIf="authType == 'login'" class="text-xl font-medium text-center mb-2">Se connecter</h1>
+    <div class="m-3 flex justify-center items-center">
+      <button type="button" class="font-medium cursor-pointer border-b-2 p-3 w-full transition-color duration-300" [class.border-b-blue-500]="connectType === 'user'" (click)="setconnectType('user')">Utilisateur</button>
+      <button type="button" class="font-medium cursor-pointer border-b-2 p-3 w-full transition-color duration-300" [class.border-b-blue-500]="connectType === 'company'" (click)="setconnectType('company')">Entreprise</button>
+    </div>
+    
+    <div *ngIf="authType == 'login'">
+      <app-connecter [connectType]="connectType"></app-connecter>
+    </div>
+    
+    <div *ngIf="authType == 'inscrire'">
+      <app-inscrire [inscriptionType]="connectType"></app-inscrire>
+    </div>
+
+    <div class="mt-2">
+      <p class="text-xs text-gray-500">En s'identifiant, vous acceptez les conditions d'utilisation et de confidentialité de Profilix.</p>
+    </div>
+  </app-card>
+</div>

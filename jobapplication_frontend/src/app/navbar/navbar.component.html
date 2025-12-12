@@ -1,0 +1,29 @@
+<nav class="fixed top-0 w-full z-50 flex w-full gap-5 items-center bg-black/75 h-20 p-4 px-10">
+  <a [routerLink]="['home']">
+    <img src="assets/Profilix_dbg.png" alt="Profilix" width="100">
+  </a>
+  
+  <div class="flex justify-center gap-8 w-full text-white text-lg pt-1">
+    <ng-container *ngIf="!isUserLoggedIn && !isCompanyUser">
+      <app-underlined-link [routerLink]="['home']">Accueil </app-underlined-link>
+    </ng-container>
+    <ng-container *ngIf="isUserLoggedIn && !isCompanyUser">
+      <app-underlined-link [routerLink]="['user-component']">Accueil </app-underlined-link>
+    </ng-container>
+  
+    <ng-container *ngIf="!isUserLoggedIn && isCompanyUser">
+      <app-underlined-link [routerLink]="['company-component']">Accueil </app-underlined-link>
+    </ng-container>
+
+    <app-underlined-link [routerLink]="['contact']">Contact</app-underlined-link>
+    
+    <div class="relative" *ngIf="isUserLoggedIn && !isCompanyUser">
+      <app-profile-menu [user]="user"> </app-profile-menu>
+    </div>
+    
+    <div class="relative" *ngIf="!isUserLoggedIn && isCompanyUser">
+      <app-company-profile-menu [company]="company"></app-company-profile-menu>
+    </div>
+
+  </div>
+</nav>

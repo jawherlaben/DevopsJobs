@@ -1,0 +1,75 @@
+<nav [ngClass]="showSideBar ? 'w-3/4' : 'w-[70px]'"
+  class="hidden h-full flex-col justify-between overflow-hidden transition-all duration-300 shadow-md scrollbar-thin scrollbar-track-gray-50 scrollbar-thumb-gray-100 dark:bg-night-700 dark:scrollbar-thumb-night-500 dark:scrollbar-track-night-600 lg:flex">
+  <div class="p-4 min-h-full bg-gray-200/50">
+    <ng-container *ngIf="!isCompany">
+      <div class="relative h-10">
+        <div class="flex items-center" *ngIf="showSideBar">
+          <app-head-user-dashboard [user]="user"> </app-head-user-dashboard>
+        </div>
+
+        <button
+          (click)= "menuService.toggleSideBar()"
+          class="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded text-gray-400 transition-all duration-200 focus:outline-none hover:text-gray-500 dark:text-night-400 dark:hover:text-night-300"
+          [ngClass]="{ 'rotate-180': !showSideBar }">
+          <svg-icon src="assets/icons/heroicons/solid/chevron-double-left.svg" [svgClass]="'h-5 w-5'"> </svg-icon>
+        </button>
+      </div>
+
+      <div class="pt-3">
+        <hr class="border-dashed border-gray-200 dark:border-night-500" />
+      </div>
+
+      <ng-container>
+        <app-sidebar-menu></app-sidebar-menu>
+      </ng-container>
+        
+      <div *ngIf="showSideBar" class="py-4">
+        <a (click)="authService.logout()"
+        class="text-xs font-semibold flex gap-2 items-center text-gray-600 focus:outline-none cursor-pointer hover:border hover:bg-slate-100 hover:rounded-md p-2">
+          <svg-icon src="assets/icons/heroicons/outline/logout.svg" class="text-gray-400" [svgClass]="'h-5 w-5'"> </svg-icon>
+          Se déconnecter
+        </a>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="isCompany">
+      <div class="relative h-10">
+        <div class="flex items-center" *ngIf="showSideBar">
+          <ng-container *ngIf="user && !company; else companyHead">
+            <app-head-user-dashboard [user]="user"></app-head-user-dashboard>
+          </ng-container>
+        
+          <ng-template #companyHead>
+            <app-head-company-dashboard [company]="company"></app-head-company-dashboard>
+          </ng-template>
+
+
+        </div>
+
+        <button
+          (click)= "menuService.toggleSideBar()"
+          class="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded text-gray-400 transition-all duration-200 focus:outline-none hover:text-gray-500 dark:text-night-400 dark:hover:text-night-300"
+          [ngClass]="{ 'rotate-180': !showSideBar }">
+          <svg-icon src="assets/icons/heroicons/solid/chevron-double-left.svg" [svgClass]="'h-5 w-5'"> </svg-icon>
+        </button>
+      </div>
+
+
+      <div class="pt-3">
+        <hr class="border-dashed border-gray-200 dark:border-night-500" />
+      </div>
+
+      <ng-container>
+        <app-sidebar-menu></app-sidebar-menu>
+      </ng-container>
+        
+      <div *ngIf="showSideBar" class="py-4">
+        <a (click)="authService.logout()"
+        class="text-xs font-semibold flex gap-2 items-center text-gray-600 focus:outline-none cursor-pointer hover:border hover:bg-slate-100 hover:rounded-md p-2">
+          <svg-icon src="assets/icons/heroicons/outline/logout.svg" class="text-gray-400" [svgClass]="'h-5 w-5'"> </svg-icon>
+          Se déconnecter
+        </a>
+      </div>
+    </ng-container>
+  </div>
+</nav>

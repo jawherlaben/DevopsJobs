@@ -1,0 +1,13 @@
+.image-container {
+    display: flex;        /* Utilisez Flexbox */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;     /* Centre verticalement */
+    height: 100%;    
+    width: 100%; 
+  }
+  
+  img {
+    max-width: 60%;    /* Assurez-vous que l'image est responsive et ne dépasse pas le conteneur */
+    max-height: 60%;   /* Idem pour la hauteur */
+  }
+  

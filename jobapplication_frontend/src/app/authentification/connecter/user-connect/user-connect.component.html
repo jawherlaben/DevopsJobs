@@ -1,0 +1,25 @@
+<form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+    
+    <div class="flex flex-col gap-2">
+        <div class="self-end px-5" [class]="loginMessageClass" >{{ loginMessage }}</div>
+        
+        <label for="email">Email Utilisateur</label>
+        <input class="px-5 py-2 rounded-md" type="email" id="email" name="email" formControlName="email" placeholder="Email" required />
+        <div *ngIf="isInvalidAndTouched('email')" class="text-red-500"> Veuillez saisir un adresse mail valide. </div>
+
+        <label for="password">Password</label>
+        <input class="px-5 py-2 rounded-md" type="password" id="password" name="password" formControlName="password" placeholder="Password" required />
+        <div *ngIf="isInvalidAndTouched('password')" class="text-red-500"> Veuillez saisir un mot de passe valide. </div>
+
+        <div class="flex justify-between items-center mt-2">
+            <a class="text-blue-500 cursor-pointer" (click)="onClick()">Pas encore membre?</a>
+            <button
+                class="bg-blue-500 text-white hover:bg-blue-700 rounded-md font-medium py-2 px-4 transition ease-out hover:ease-in disabled:opacity-50 disabled:cursor-not-allowed"
+                [disabled]="!authForm.valid"
+                type="submit"
+            >
+                Se connecter
+            </button>
+        </div>
+    </div>
+</form>

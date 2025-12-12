@@ -1,0 +1,7 @@
+<div aria-label="Page navigation">
+    <ul class="flex justify-center items-center gap-2">
+      <li *ngFor="let page of pages">
+        <a class="p-2 rounded-md bg-gray-300 hover:bg-gray-400" href="#" (click)="changePage(page); $event.preventDefault()">{{ page }}</a>
+      </li>
+    </ul>
+</div>

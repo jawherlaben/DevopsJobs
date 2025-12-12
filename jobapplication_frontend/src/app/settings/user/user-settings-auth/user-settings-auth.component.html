@@ -1,0 +1,66 @@
+<div class="bg-white shadow overflow-hidden sm:rounded-md bg-gray-200/50">
+    <ul>
+      <li>
+        <button class="block w-full text-left px-4 py-4 sm:px-6 hover:bg-gray-50 focus:outline-none" (click)="openModal('new-password-settings')">
+          <div class="flex items-center justify-between">
+            <div class="text-sm font-medium text-gray-700">
+              Changer de mot de passe
+            </div>
+            <div>
+              <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </li>
+      <li>
+        <button disabled class="cursor-not-allowed opacity-25 block w-full text-left px-4 py-4 sm:px-6 hover:bg-gray-50 focus:outline-none" (click)="openModal('two-factor-authentication')">
+          <div class="flex items-center justify-between">
+            <div class="text-sm font-medium text-gray-700">
+              Authentification à deux facteurs
+            </div>
+            <div>
+              <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </li>
+      <li>
+        <button disabled class="cursor-not-allowed opacity-25 block w-full text-left px-4 py-4 sm:px-6 hover:bg-gray-50 focus:outline-none" (click)="openModal('login-information')">
+          <div class="flex items-center justify-between">
+            <div class="text-sm font-medium text-gray-700">
+              Informations de connexion enregistrées
+            </div>
+            <div>
+              <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+
+
+
+  <div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" *ngIf="activeModal">
+    <div class="relative bg-white rounded-lg shadow-xl" style="width: 30rem; margin: 10% auto; max-width: 90%;">
+      <div class="absolute top-0 right-0 m-4">
+        <button class="text-gray-600 hover:text-gray-900" (click)="closeModal()">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="p-8">
+        <app-new-password-settings *ngIf="activeModal === 'new-password-settings'" (close)="closeModal()"></app-new-password-settings>
+        <app-card-twosteps-authentication *ngIf="activeModal === 'twosteps-authentication'" (close)="closeModal()"></app-card-twosteps-authentication>
+        <app-auth-informations-saved *ngIf="activeModal === 'informations-saved'" (close)="closeModal()"></app-auth-informations-saved>
+      </div>
+    </div>
+  </div>

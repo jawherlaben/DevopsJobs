@@ -1,0 +1,14 @@
+<div class="flex justify-center items-center gap-5 py-5 mx-8 mb-4" *ngIf="!isUserLoggedIn">
+    <div class="w-1/2 h-full self-center">
+      <app-authentification></app-authentification>
+    </div>
+  
+    <div>
+      <img class="rounded-xl" src="assets/images/workspace.png" alt="Professional at Work">
+    </div>
+</div>
+  
+<div class="flex flex-col gap-5 justify-center items-center bg-gray-300/50 p-5" *ngIf="isUserLoggedIn">
+    <h2 class="text-xl font-semibold">Partager des offres de travail avec des personnes motivées</h2>
+    <app-button [routerLink]="['/inscrire']">Publier une offre</app-button>
+</div>
