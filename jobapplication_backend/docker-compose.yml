@@ -1,0 +1,37 @@
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: job-application-api
+    environment:
+      - MONGODB_KEY=mongodb://mongo:27017/job_application
+      - NODE_ENV=production
+      - UPLOAD_DIR=/usr/src/app/uploads
+    ports:
+      - "3000:3000"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - uploads:/usr/src/app/uploads
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:7
+    container_name: job-application-mongo
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 })"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
+  uploads:
