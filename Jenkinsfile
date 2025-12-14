@@ -78,10 +78,14 @@ pipeline {
                     # Ensure we are operating from the Jenkins workspace and compose resolves paths correctly
                     ls -la ${WORKSPACE}/monitoring/prometheus || true
                     test -f ${WORKSPACE}/monitoring/prometheus/prometheus.yml && echo "Found prometheus.yml" || { echo "prometheus.yml not found"; exit 1; }
-                    docker compose -f ${WORKSPACE}/docker-compose.yml --project-directory ${WORKSPACE} down
+                    docker compose -f ${WORKSPACE}/docker-compose.yml --project-directory ${WORKSPACE} down -v || true
+                    docker rm -f prometheus || true
 
                     echo "=== Run all containers via Docker Compose ==="
-                    docker compose -f ${WORKSPACE}/docker-compose.yml --project-directory ${WORKSPACE} up -d
+                    echo "Check mount contents with Alpine"
+                    docker run --rm -v ${WORKSPACE}/monitoring/prometheus:/etc/prometheus:ro alpine sh -lc 'ls -la /etc/prometheus && ls -l /etc/prometheus/prometheus.yml || true'
+
+                    docker compose -f ${WORKSPACE}/docker-compose.yml --project-directory ${WORKSPACE} up -d --force-recreate --renew-anon-volumes
                 '''
             }
         }
