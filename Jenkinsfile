@@ -69,32 +69,10 @@ pipeline {
             }
         }
 
-        /* ========================= */
-        /* 5. PUSH GHCR              */
-        /* ========================= */
-        stage('Push to GitHub Container Registry') {
-            steps {
-                withCredentials([usernamePassword(
-                    credentialsId: GHCR_CREDS,
-                    usernameVariable: 'GH_USER',
-                    passwordVariable: 'GH_TOKEN'
-                )]) {
-                    sh '''
-                        echo "=== Login GHCR ==="
-                        echo $GH_TOKEN | docker login ghcr.io -u $GH_USER --password-stdin
-
-                        echo "=== Push backend ==="
-                        docker push $BACKEND_IMAGE
-
-                        echo "=== Push frontend ==="
-                        docker push $FRONTEND_IMAGE
-                    '''
-                }
-            }
-        }
+    
 
         /* ========================= */
-        /* 6. RUN LOCAL              */
+        /* 5. RUN LOCAL              */
         /* ========================= */
         stage('Run Containers (Local)') {
             steps {
