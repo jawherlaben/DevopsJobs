@@ -71,37 +71,25 @@ pipeline {
 
     
 
-        /* ========================= */
-        /* 5. RUN LOCAL              */
-        /* ========================= */
         stage('Run Containers (Local)') {
             steps {
                 sh '''
                     echo "=== Stop old containers ==="
-                    docker rm -f backend frontend || true
+                    docker-compose -f docker-compose.yml down
 
-                    echo "=== Run backend ==="
-                    docker run -d \
-                        --name backend \
-                        -p 3000:3000 \
-                        $BACKEND_IMAGE
-
-                    echo "=== Run frontend ==="
-                    docker run -d \
-                        --name frontend \
-                        -p 8080:80 \
-                        $FRONTEND_IMAGE
+                    echo "=== Run all containers via Docker Compose ==="
+                    docker-compose -f docker-compose.yml up -d
                 '''
             }
         }
-    }
+            }
 
-    post {
-        success {
-            echo "Pipeline DevopsJobs terminé avec succès"
-        }
-        failure {
-            echo "Pipeline DevopsJobs échoué"
-        }
-    }
+            post {
+                success {
+                    echo "Pipeline DevopsJobs terminé avec succès"
+                }
+                failure {
+                    echo "Pipeline DevopsJobs échoué"
+                }
+            }
 }
