@@ -13,42 +13,50 @@ pipeline {
 
     stages {
 
-
+        /* ========================= */
+        /* 1. CHECKOUT               */
+        /* ========================= */
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-
+        /* ========================= */
+        /* 2. BACKEND TEST (DOCKER)  */
+        /* ========================= */
         stage('Backend - Install & Test') {
             steps {
-                dir('jobapplication_backend') {
-                    sh '''
-                        echo "=== Backend: install dependencies ==="
-                        npm ci
-
-                        echo "=== Backend: run tests ==="
-                        npm run test || echo "No backend tests"
-                    '''
-                }
+                sh '''
+                    echo "=== Backend: install & test in Docker ==="
+                    docker run --rm \
+                      -v "$PWD/jobapplication_backend:/app" \
+                      -w /app \
+                      node:20-bookworm-slim \
+                      sh -c "npm ci && npm run test || echo 'No backend tests'"
+                '''
             }
         }
 
+        /* ========================= */
+        /* 3. FRONTEND TEST (DOCKER) */
+        /* ========================= */
         stage('Frontend - Install & Test') {
             steps {
-                dir('jobapplication_frontend') {
-                    sh '''
-                        echo "=== Frontend: install dependencies ==="
-                        npm ci
-
-                        echo "=== Frontend: run tests ==="
-                        npm run test || echo "No frontend tests"
-                    '''
-                }
+                sh '''
+                    echo "=== Frontend: install & test in Docker ==="
+                    docker run --rm \
+                      -v "$PWD/jobapplication_frontend:/app" \
+                      -w /app \
+                      node:18-alpine \
+                      sh -c "npm ci && npm run test || echo 'No frontend tests'"
+                '''
             }
         }
 
+        /* ========================= */
+        /* 4. BUILD IMAGES DOCKER    */
+        /* ========================= */
         stage('Build Docker Images') {
             steps {
                 sh '''
@@ -61,7 +69,9 @@ pipeline {
             }
         }
 
-
+        /* ========================= */
+        /* 5. PUSH GHCR              */
+        /* ========================= */
         stage('Push to GitHub Container Registry') {
             steps {
                 withCredentials([usernamePassword(
@@ -83,7 +93,9 @@ pipeline {
             }
         }
 
-
+        /* ========================= */
+        /* 6. RUN LOCAL              */
+        /* ========================= */
         stage('Run Containers (Local)') {
             steps {
                 sh '''
