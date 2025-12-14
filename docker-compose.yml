@@ -48,8 +48,7 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     volumes:
-      # Mount the Prometheus configuration file explicitly to avoid path translation issues on some Jenkins/Docker agents
-      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/prometheus:/etc/prometheus:ro
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
     ports:

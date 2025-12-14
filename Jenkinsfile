@@ -75,10 +75,13 @@ pipeline {
             steps {
                 sh '''
                     echo "=== Stop old containers ==="
-                    docker compose -f docker-compose.yml down
+                    # Ensure we are operating from the Jenkins workspace and compose resolves paths correctly
+                    ls -la ${WORKSPACE}/monitoring/prometheus || true
+                    test -f ${WORKSPACE}/monitoring/prometheus/prometheus.yml && echo "Found prometheus.yml" || { echo "prometheus.yml not found"; exit 1; }
+                    docker compose -f ${WORKSPACE}/docker-compose.yml --project-directory ${WORKSPACE} down
 
                     echo "=== Run all containers via Docker Compose ==="
-                    docker compose -f docker-compose.yml up -d
+                    docker compose -f ${WORKSPACE}/docker-compose.yml --project-directory ${WORKSPACE} up -d
                 '''
             }
         }
