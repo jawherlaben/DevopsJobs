@@ -32,7 +32,7 @@ services:
     volumes:
       - uploads:/usr/src/app/uploads
     restart: unless-stopped
-    
+
   frontend:
     build:
       context: ./jobapplication_frontend
@@ -45,15 +45,15 @@ services:
     restart: unless-stopped
 
   prometheus:
-      image: prom/prometheus:latest
-      container_name: prometheus
-      volumes:
-        - ./monitoring/prometheus:/etc/prometheus
-      command:
-        - "--config.file=/etc/prometheus/prometheus.yml"
-      ports:
-        - "9090:9090"
-      restart: unless-stopped
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./monitoring/prometheus:/etc/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
 
   grafana:
     image: grafana/grafana:latest
@@ -70,7 +70,6 @@ services:
       - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
     restart: unless-stopped
 
-
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
@@ -81,7 +80,6 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     restart: unless-stopped
-
 
 volumes:
   mongo_data:
