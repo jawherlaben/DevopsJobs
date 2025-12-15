@@ -45,12 +45,8 @@ services:
     restart: unless-stopped
 
   prometheus:
-    image: prom/prometheus:latest
+    build: ./monitoring/prometheus
     container_name: prometheus
-    volumes:
-      - ./monitoring/prometheus:/etc/prometheus
-    command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
     ports:
       - "9090:9090"
     restart: unless-stopped
