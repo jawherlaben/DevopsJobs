@@ -75,11 +75,10 @@ pipeline {
             steps {
                 sh '''
                     echo "=== Stop old containers ==="
-                    # Ensure we are operating from the Jenkins workspace and compose resolves paths correctly
-                    docker compose -f ${WORKSPACE}/docker-compose.yml --project-directory ${WORKSPACE} down
+                    docker compose -f docker-compose.yml down
 
                     echo "=== Run all containers via Docker Compose ==="
-                    docker compose -f ${WORKSPACE}/docker-compose.yml --project-directory ${WORKSPACE} up -d
+                    docker compose -f docker-compose.yml up -d
                 '''
             }
         }
